@@ -24,3 +24,6 @@ jobs:
     - name: Analysing the code with pylint
       run: |
         hatch run test:lint
+    - name: Run pylint and save report
+      run: |
+        hatch run test:test -- --exit-zero --output-format=parseable > pylint_report.txt || true

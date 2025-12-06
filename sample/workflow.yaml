@@ -1,0 +1,29 @@
+workflow:
+  name: simple_etl_workflow
+  description: "A simple ETL workflow example"
+  defaults:
+    run_id: "2025-12-05"
+    owner: "data-eng-team"
+
+  steps:
+    - id: load_data
+      module: examples.etl_steps
+      function: load_data
+      needs: []
+      args:
+        path: "/data/input.csv"
+
+    - id: transform_data
+      module: examples.etl_steps
+      function: transform_data
+      needs: ["load_data"]
+      args:
+        multiplier: 10
+
+    - id: save_data
+      module: examples.etl_steps
+      function: save_data
+      needs: ["transform_data"]
+      args:
+        target_path: "/data/output.parquet"
+        mode: "overwrite"

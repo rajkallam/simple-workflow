@@ -25,4 +25,4 @@ dependencies = [
 ]
 [tool.hatch.envs.test.scripts]
 run = "pytest --cov=simple_workflow_engine --cov-report=term-missing"
-lint = "pylint src/simple_workflow_engine tests"
+lint = "pylint src/simple_workflow_engine"

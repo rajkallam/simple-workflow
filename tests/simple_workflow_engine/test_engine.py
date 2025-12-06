@@ -86,3 +86,21 @@ def test_step_exception_is_wrapped_in_execution_error():
     engine = WorkflowEngine(callables=callables)
     with pytest.raises(ExecutionError):
         engine.run(wf)
+
+def test_missing_attribute_raises_execution_error():
+    # Use a real importable module but a non-existent attribute to force getattr to raise.
+    steps = [Step(id="s1", module="math", function="no_such_function", needs=[], args={})]
+    wf = Workflow(name="wf", description="", defaults=None, steps=steps)
+
+    engine = WorkflowEngine()
+    with pytest.raises(ExecutionError):
+        engine.run(wf)
+
+def test_imported_non_callable_attribute_raises_execution_error():
+    # Use a real importable module with a non-callable attribute (math.pi is a float)
+    steps = [Step(id="s1", module="math", function="pi", needs=[], args={})]
+    wf = Workflow(name="wf", description="", defaults=None, steps=steps)
+
+    engine = WorkflowEngine()
+    with pytest.raises(ExecutionError):
+        engine.run(wf)

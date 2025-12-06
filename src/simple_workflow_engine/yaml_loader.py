@@ -1,3 +1,25 @@
+"""YAML loader for the simple_workflow_engine package.
+
+This module provides `load_workflow_from_yaml(path)` which reads a YAML file
+containing a top-level `workflow` mapping and returns a `Workflow` instance.
+
+Expected YAML structure:
+
+workflow:
+  name: ...
+  description: ...
+  defaults: { ... }
+  steps:
+    - id: ...
+      module: ...
+      function: ...
+      needs: [ ... ]
+      args: { ... }
+
+The loader validates that `workflow.steps` is a list and that each step is a mapping,
+and raises `ValueError` for malformed inputs.
+"""
+
 from __future__ import annotations
 
 from pathlib import Path

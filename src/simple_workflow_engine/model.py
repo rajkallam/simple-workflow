@@ -1,3 +1,12 @@
+
+"""Models for the simple_workflow_engine package.
+
+This module defines the data models used to represent workflow definitions:
+- Step: represents a single workflow step and its validation.
+- Workflow: represents a full workflow with metadata and steps.
+
+These dataclasses are used by the YAML loader and workflow executor.
+"""
 from __future__ import annotations
 
 from dataclasses import dataclass, field

@@ -50,7 +50,7 @@ def test_workflow_normalizes_none_defaults_and_steps():
         name="normalize_workflow",
         description="check None behavior",
         defaults=None,  # type: ignore[arg-type]
-        steps=None,     # type: ignore[arg-type]
+        steps=None,  # type: ignore[arg-type]
     )
 
     assert wf.defaults == {}
@@ -63,13 +63,14 @@ def test_workflow_requires_name():
 
     assert "must not be empty" in str(excinfo.value).lower()
 
+
 def test_step_set_needs_and_args_to_empty_when_none():
     step = Step(
         id="step1",
         module="example.module",
         function="func1",
         needs=None,  # type: ignore[arg-type]
-        args=None,   # type: ignore[arg-type]
+        args=None,  # type: ignore[arg-type]
     )
 
     assert step.needs == []

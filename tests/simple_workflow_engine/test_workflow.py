@@ -62,3 +62,15 @@ def test_workflow_requires_name():
         Workflow(name="")  # empty name should fail
 
     assert "must not be empty" in str(excinfo.value).lower()
+
+def test_step_set_needs_and_args_to_empty_when_none():
+    step = Step(
+        id="step1",
+        module="example.module",
+        function="func1",
+        needs=None,  # type: ignore[arg-type]
+        args=None,   # type: ignore[arg-type]
+    )
+
+    assert step.needs == []
+    assert step.args == {}

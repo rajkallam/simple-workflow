@@ -1,6 +1,8 @@
 # python
-import pytest
 from pathlib import Path
+
+import pytest
+
 from simple_workflow_engine.yaml_loader import load_workflow_from_yaml
 
 
